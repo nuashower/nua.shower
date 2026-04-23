@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nua Showers — Transforma Tu Ducha, Transforma Tu Piel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   CSS VARIABLES — Easy Shopify migration:
+   Replace --wa-link with your Shopify cart URL
+   ============================================ */
+:root {
+  --primary: #0d5c4e;
+  --primary-light: #12826f;
+  --primary-glow: rgba(13,92,78,0.15);
+  --accent: #c8a45a;
+  --accent-light: #e8c97a;
+  --surface: #f8f5f0;
+  --surface-2: #ffffff;
+  --dark: #0f1c1a;
+  --dark-2: #1e2e2b;
+  --text: #1a2926;
+  --text-muted: #6b7f7c;
+  --danger: #c0392b;
+  --radius: 16px;
+  --radius-sm: 8px;
+
+  /* ⬇ CHANGE THIS to your WhatsApp number */
+  --wa-number: "525518311660";
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--surface);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============ UTILITY ============ */
+.container { max-width: 1060px; margin: 0 auto; padding: 0 20px; }
+.section { padding: 80px 0; }
+.section-sm { padding: 48px 0; }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.badge-green { background: rgba(13,92,78,0.1); color: var(--primary); }
+.badge-gold { background: rgba(200,164,90,0.15); color: #9a7830; }
+
+.headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* ============ ANNOUNCEMENT BAR ============ */
+.ann-bar {
+  background: var(--primary);
+  color: white;
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  position: relative;
+  z-index: 100;
+}
+.ann-bar strong { color: var(--accent-light); }
+
+/* ============ NAVBAR ============ */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  background: rgba(248,245,240,0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(13,92,78,0.1);
+  padding: 14px 0;
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.5px;
+  text-decoration: none;
+}
+.logo span { color: var(--accent); }
+.nav-cta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.nav-cta:hover { background: var(--primary-light); transform: translateY(-1px); }
+
+/* ============ HERO ============ */
+.hero {
+  background: var(--dark);
+  position: relative;
+  overflow: hidden;
+  padding: 80px 0 0;
+  min-height: 620px;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 75% 50%, rgba(13,92,78,0.35) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(200,164,90,0.12) 0%, transparent 60%),
+    linear-gradient(160deg, #0d1f1c 0%, #0f2820 50%, #081a15 100%);
+}
+
+/* Animated water drops */
+.water-drops {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.drop {
+  position: absolute;
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  background: rgba(18,130,111,0.15);
+  animation: dropFall linear infinite;
+}
+.drop:nth-child(1) { width:4px; height:10px; left:15%; animation-duration:3s; animation-delay:0s; }
+.drop:nth-child(2) { width:3px; height:8px; left:30%; animation-duration:2.5s; animation-delay:0.8s; }
+.drop:nth-child(3) { width:5px; height:12px; left:55%; animation-duration:3.5s; animation-delay:0.3s; }
+.drop:nth-child(4) { width:3px; height:9px; left:70%; animation-duration:2.8s; animation-delay:1.2s; }
+.drop:nth-child(5) { width:4px; height:11px; left:85%; animation-duration:3.2s; animation-delay:0.6s; }
+@keyframes dropFall {
+  0% { top:-20px; opacity:0; }
+  10% { opacity:1; }
+  90% { opacity:0.8; }
+  100% { top:110%; opacity:0; }
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
+}
+
+.hero-content { color: white; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(200,164,90,0.2);
+  border: 1px solid rgba(200,164,90,0.4);
+  color: var(--accent-light);
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1.08;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent-light);
+  display: block;
+}
+
+.hero-sub {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 32px;
+  max-width: 440px;
+}
+
+.hero-sub strong { color: white; font-weight: 600; }
+
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 360px;
+}
+
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #25c67a 0%, #1aaa62 100%);
+  color: white;
+  padding: 18px 28px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s;
+  box-shadow: 0 8px 32px rgba(37,198,122,0.35);
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(37,198,122,0.45);
+}
+.btn-primary .btn-icon { font-size: 20px; }
+
+.btn-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent;
+  color: rgba(255,255,255,0.75);
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.2s;
+  width: 100%;
+}
+.btn-secondary:hover { border-color: rgba(255,255,255,0.5); color: white; }
+
+.hero-trust {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+  font-weight: 500;
+}
+.trust-item .icon { color: var(--accent-light); }
+
+/* Hero visual */
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.product-showcase {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+}
+
+.product-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 24px;
+  padding: 32px;
+  backdrop-filter: blur(20px);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(13,92,78,0.2), transparent 60%);
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+.product-emoji {
+  font-size: 80px;
+  display: block;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 8px 24px rgba(13,92,78,0.6));
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.product-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  color: white;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.product-tagline {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.price-block {
+  background: rgba(13,92,78,0.4);
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 16px;
+}
+.price-original {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  text-decoration: line-through;
+  margin-bottom: 2px;
+}
+.price-now {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: white;
+}
+.price-save {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 100px;
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+}
+
+.floating-badge {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  background: #e74c3c;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 8px 12px;
+  border-radius: 12px;
+  line-height: 1.2;
+  text-align: center;
+  animation: wiggle 2s ease-in-out infinite;
+  box-shadow: 0 4px 16px rgba(231,76,60,0.5);
+}
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+/* ============ SOCIAL PROOF STRIP ============ */
+.proof-strip {
+  background: var(--primary);
+  padding: 20px 0;
+  overflow: hidden;
+}
+.proof-scroll {
+  display: flex;
+  gap: 48px;
+  animation: scrollLeft 20s linear infinite;
+  white-space: nowrap;
+}
+.proof-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,0.85);
+  font-size: 14px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+.proof-item .stars { color: var(--accent-light); letter-spacing: -1px; }
+@keyframes scrollLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ============ PROBLEM/SOLUTION ============ */
+.problem-section {
+  background: var(--surface-2);
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+.section-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.section-headline em { font-style: italic; color: var(--primary); }
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.problem-col, .solution-col {
+  border-radius: 20px;
+  padding: 32px;
+}
+
+.problem-col {
+  background: #fdf5f4;
+  border: 1px solid #fad2ce;
+}
+
+.solution-col {
+  background: #f0f9f6;
+  border: 1px solid rgba(13,92,78,0.2);
+}
+
+.col-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.col-header h3 {
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.problem-col .col-header h3 { color: var(--danger); }
+.solution-col .col-header h3 { color: var(--primary); }
+
+.col-tag {
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.problem-col .col-tag { background: #fde8e6; color: var(--danger); }
+.solution-col .col-tag { background: rgba(13,92,78,0.1); color: var(--primary); }
+
+.check-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.check-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--text);
+}
+.check-list .icon { flex-shrink: 0; margin-top: 1px; font-size: 16px; }
+
+/* ============ BENEFITS ============ */
+.benefits-section { background: var(--surface); }
+
+.benefits-headline {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 56px;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.benefit-card {
+  background: var(--surface-2);
+  border: 1px solid rgba(13,92,78,0.1);
+  border-radius: 20px;
+  padding: 32px 24px;
+  text-align: center;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.benefit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(13,92,78,0.12);
+  border-color: var(--primary);
+}
+.benefit-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+.benefit-card:hover::after { transform: scaleX(1); }
+
+.benefit-icon {
+  font-size: 44px;
+  display: block;
+  margin-bottom: 16px;
+}
+.benefit-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+.benefit-card p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* ============ HOW IT WORKS ============ */
+.how-section {
+  background: var(--dark);
+  color: white;
+}
+
+.how-header { text-align: center; margin-bottom: 56px; }
+.how-header .section-label { color: var(--accent-light); }
+.how-header .section-headline { color: white; }
+.how-header p { color: rgba(255,255,255,0.6); font-size: 15px; margin-top: 12px; }
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  position: relative;
+}
+
+.steps::before {
+  content: '';
+  position: absolute;
+  top: 36px;
+  left: 12%;
+  right: 12%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
+  z-index: 0;
+}
+
+.step {
+  text-align: center;
+  padding: 24px 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.step-num {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--dark-2);
+  border: 2px solid var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 28px;
+  position: relative;
+  transition: all 0.3s;
+}
+.step:hover .step-num {
+  background: var(--primary);
+  box-shadow: 0 0 32px rgba(13,92,78,0.6);
+}
+
+.step h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 6px;
+}
+.step p { font-size: 12.5px; color: rgba(255,255,255,0.5); line-height: 1.5; }
+
+/* ============ TESTIMONIALS ============ */
+.testimonials-section { background: var(--surface-2); }
+
+.testimonials-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.stars-row {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 12px;
+  font-size: 22px;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.testimonial-card {
+  background: var(--surface);
+  border: 1px solid rgba(13,92,78,0.1);
+  border-radius: 20px;
+  padding: 28px;
+  transition: all 0.3s;
+}
+.testimonial-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+}
+
+.tc-stars { color: #f0b429; font-size: 14px; margin-bottom: 12px; }
+.tc-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text);
+  margin-bottom: 20px;
+  font-style: italic;
+}
+.tc-author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.tc-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: white;
+  font-weight: 700;
+  font-family: 'Cormorant Garamond', serif;
+  flex-shrink: 0;
+}
+.tc-name { font-size: 14px; font-weight: 600; color: var(--dark); }
+.tc-location { font-size: 12px; color: var(--text-muted); }
+
+/* FEATURED REVIEW */
+.featured-review {
+  background: linear-gradient(135deg, var(--primary) 0%, #0d4a3e 100%);
+  border-radius: 24px;
+  padding: 40px;
+  margin-top: 24px;
+  color: white;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 28px;
+  align-items: start;
+}
+.fr-quote-icon { font-size: 56px; line-height: 1; color: rgba(255,255,255,0.2); margin-top: -8px; }
+.fr-text { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; line-height: 1.5; font-style: italic; color: rgba(255,255,255,0.95); margin-bottom: 16px; }
+.fr-name { font-size: 14px; font-weight: 600; color: var(--accent-light); }
+
+/* ============ GUARANTEE ============ */
+.guarantee-section {
+  background: linear-gradient(135deg, #f0f9f6 0%, var(--surface) 100%);
+  border-top: 1px solid rgba(13,92,78,0.1);
+}
+
+.guarantee-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.guarantee-visual {
+  text-align: center;
+}
+.guarantee-badge-big {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), #09453a);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  box-shadow: 0 20px 60px rgba(13,92,78,0.3);
+  border: 4px solid var(--accent);
+}
+.guarantee-badge-big .big-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+}
+.guarantee-badge-big .big-label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.7);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.guarantee-features { display: flex; flex-direction: column; gap: 16px; }
+.gf-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.gf-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(13,92,78,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.gf-item h4 { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+.gf-item p { font-size: 13.5px; color: var(--text-muted); line-height: 1.5; }
+
+/* ============ OFFER SECTION ============ */
+.offer-section {
+  background: var(--dark);
+  color: white;
+  padding: 80px 0;
+}
+
+.offer-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.urgency-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(231,76,60,0.2);
+  border: 1px solid rgba(231,76,60,0.4);
+  color: #ff7f72;
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.offer-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  color: white;
+}
+.offer-headline span { color: var(--accent-light); }
+
+.offer-sub {
+  color: rgba(255,255,255,0.6);
+  font-size: 16px;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.packages {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 1fr;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.pkg {
+  border-radius: 20px;
+  padding: 24px 20px;
+  border: 1.5px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.04);
+  transition: all 0.3s;
+  cursor: pointer;
+  position: relative;
+}
+.pkg:hover { border-color: var(--primary-light); transform: translateY(-2px); }
+
+.pkg.featured {
+  border-color: var(--accent);
+  background: rgba(200,164,90,0.08);
+  transform: scale(1.03);
+}
+
+.pkg-label {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 100px;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.pkg-icon { font-size: 32px; margin-bottom: 8px; }
+.pkg-name { font-size: 14px; font-weight: 700; color: white; margin-bottom: 4px; }
+.pkg-qty { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 12px; }
+.pkg-price { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 700; color: white; }
+.pkg-per { font-size: 12px; color: rgba(255,255,255,0.5); }
+.pkg-save {
+  display: inline-block;
+  margin-top: 8px;
+  background: rgba(13,92,78,0.4);
+  color: #7ee8cc;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 100px;
+}
+
+.btn-whatsapp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #25d366, #128c4a);
+  color: white;
+  padding: 20px 36px;
+  border-radius: 14px;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s;
+  box-shadow: 0 8px 40px rgba(37,211,102,0.4);
+  margin-bottom: 16px;
+}
+.btn-whatsapp:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 50px rgba(37,211,102,0.5);
+}
+
+.wa-note {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+}
+
+/* ============ FAQ ============ */
+.faq-section { background: var(--surface-2); }
+.faq-header { text-align: center; margin-bottom: 40px; }
+
+.faq-list { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+
+.faq-item {
+  border: 1px solid rgba(13,92,78,0.12);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.faq-q {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 22px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--dark);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  gap: 12px;
+  transition: color 0.2s;
+}
+.faq-q:hover { color: var(--primary); }
+.faq-arrow { transition: transform 0.3s; color: var(--primary); flex-shrink: 0; }
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s;
+  padding: 0 22px;
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+.faq-item.open .faq-a {
+  max-height: 200px;
+  padding: 0 22px 18px;
+}
+
+/* ============ FINAL CTA ============ */
+.final-cta {
+  background: linear-gradient(160deg, var(--primary) 0%, #07362d 100%);
+  padding: 100px 0;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.final-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% 100%, rgba(200,164,90,0.1), transparent);
+}
+
+.final-cta .container { position: relative; z-index: 1; }
+
+.final-cta h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 700;
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+.final-cta h2 span { color: var(--accent-light); }
+.final-cta p { color: rgba(255,255,255,0.65); font-size: 16px; max-width: 460px; margin: 0 auto 40px; line-height: 1.6; }
+
+.final-cta .btn-whatsapp { max-width: 400px; margin: 0 auto 16px; }
+
+/* ============ FOOTER ============ */
+footer {
+  background: var(--dark);
+  color: rgba(255,255,255,0.4);
+  text-align: center;
+  padding: 28px 20px;
+  font-size: 13px;
+}
+footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+
+/* ============ STICKY WHATSAPP FLOAT ============ */
+.wa-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  background: #25d366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(37,211,102,0.5);
+  z-index: 1000;
+  animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1s both;
+  transition: transform 0.2s;
+}
+.wa-float:hover { transform: scale(1.1); }
+@keyframes popIn {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.wa-float-pulse {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid #25d366;
+  animation: wavePulse 2s ease-out infinite;
+}
+@keyframes wavePulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* ============ MOBILE ============ */
+@media (max-width: 768px) {
+  .section { padding: 56px 0; }
+
+  .hero-inner { grid-template-columns: 1fr; padding: 0 20px 48px; }
+  .hero-visual { display: none; }
+  .hero h1 { font-size: 2.4rem; }
+  .hero-actions { max-width: 100%; }
+  .hero-trust { flex-wrap: wrap; gap: 10px; }
+
+  .problem-grid { grid-template-columns: 1fr; }
+  .benefits-grid { grid-template-columns: 1fr; }
+  .how-section .steps { grid-template-columns: 1fr 1fr; }
+  .how-section .steps::before { display: none; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .featured-review { grid-template-columns: 1fr; gap: 12px; }
+  .fr-quote-icon { font-size: 36px; }
+  .guarantee-grid { grid-template-columns: 1fr; }
+  .packages { grid-template-columns: 1fr; }
+  .pkg.featured { transform: none; }
+  .nav-cta span { display: none; }
+  .nav-cta { padding: 10px 14px; }
+}
+
+/* ============ ANIMATIONS ============ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- ===== ANNOUNCEMENT BAR ===== -->
+<div class="ann-bar">
+  🚚 Envío gratis en pedidos +$599 · <strong>Últimas unidades disponibles</strong> — ¡No te quedes sin el tuyo!
+</div>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">Nua<span>.</span></a>
+    <a href="#oferta" class="nav-cta">
+      <span>🛒 Comprar Ahora</span>
+    </a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="water-drops">
+    <div class="drop"></div><div class="drop"></div><div class="drop"></div>
+    <div class="drop"></div><div class="drop"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-content fade-up">
+      <div class="hero-badge">✦ Tecnología de filtrado avanzada</div>
+      <h1>
+        Tu ducha estaba<br>
+        <em>dañando tu piel.</em>
+        Ya no más.
+      </h1>
+      <p class="hero-sub">
+        El agua de la llave contiene <strong>cloro, metales y bacterias</strong> que resecan tu piel y debilitan tu cabello. El Filtro Nua lo elimina desde el primer día.
+      </p>
+      <div class="hero-actions">
+        <a href="https://wa.me/525518311660?text=Hola!%20Quiero%20mi%20Nua%20Showers%20🚿"
+           class="btn-primary" id="heroCta">
+          <span class="btn-icon">💬</span>
+          <span>Quiero el mío — WhatsApp</span>
+        </a>
+        <a href="#como-funciona" class="btn-secondary">Ver cómo funciona ↓</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item"><span class="icon">⭐</span> 4.9/5 estrellas</div>
+        <div class="trust-item"><span class="icon">🔒</span> Garantía 30 días</div>
+        <div class="trust-item"><span class="icon">🚀</span> Envío express</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="product-showcase">
+        <div class="floating-badge">¡Solo<br>quedan 8!</div>
+        <div class="product-card">
+          <span class="product-emoji">🚿</span>
+          <div class="product-name">Nua Showers Filter</div>
+          <div class="product-tagline">Cabezal Filtrado Premium</div>
+          <div class="price-block">
+            <div class="price-original">Antes: $89 USD</div>
+            <div class="price-now">$69 USD</div>
+            <div class="price-save">+ Envío gratis</div>
+          </div>
+          <a href="https://wa.me/525518311660?text=Hola!%20Quiero%20mi%20Nua%20Showers%20🚿" class="btn-primary" style="font-size:14px; padding:14px;">
+            <span>💬</span> Ordenar por WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROOF STRIP ===== -->
+<div class="proof-strip">
+  <div class="proof-scroll">
+    <div class="proof-item"><span class="stars">★★★★★</span> "Mi cabello cambió en 2 semanas" — Karen M.</div>
+    <div class="proof-item">✦ +3,200 clientes satisfechos</div>
+    <div class="proof-item"><span class="stars">★★★★★</span> "La piel de mis hijos mejoró muchísimo" — Claudia R.</div>
+    <div class="proof-item">✦ Filtro de 3 etapas certificado</div>
+    <div class="proof-item"><span class="stars">★★★★★</span> "Instalación en 5 minutos, increíble" — Roberto V.</div>
+    <div class="proof-item">✦ Garantía total 30 días</div>
+    <!-- duplicado para efecto scroll infinito -->
+    <div class="proof-item"><span class="stars">★★★★★</span> "Mi cabello cambió en 2 semanas" — Karen M.</div>
+    <div class="proof-item">✦ +3,200 clientes satisfechos</div>
+    <div class="proof-item"><span class="stars">★★★★★</span> "La piel de mis hijos mejoró muchísimo" — Claudia R.</div>
+    <div class="proof-item">✦ Filtro de 3 etapas certificado</div>
+    <div class="proof-item"><span class="stars">★★★★★</span> "Instalación en 5 minutos, increíble" — Roberto V.</div>
+    <div class="proof-item">✦ Garantía total 30 días</div>
+  </div>
+</div>
+
+<!-- ===== PROBLEMA vs SOLUCIÓN ===== -->
+<section class="section problem-section">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">El problema real</div>
+      <h2 class="section-headline">¿Por qué tu piel <em>no mejora</em><br>aunque uses los mejores productos?</h2>
+      <p style="color:var(--text-muted); font-size:15px; max-width:520px; line-height:1.7;">
+        Puedes gastar miles en cremas y shampoos, pero si el agua que usas para bañarte está contaminada, es lucha perdida. El problema empieza en la regadera.
+      </p>
+    </div>
+    <div class="problem-grid fade-up">
+      <div class="problem-col">
+        <div class="col-header">
+          <span class="col-tag">Sin Nua</span>
+          <h3>❌ El problema</h3>
+        </div>
+        <ul class="check-list">
+          <li><span class="icon">❌</span> El cloro del agua reseca y irrita la piel desde adentro</li>
+          <li><span class="icon">❌</span> Los metales pesados debilitan y decoloran el cabello</li>
+          <li><span class="icon">❌</span> Las bacterias del agua agravan el acné y la sensibilidad</li>
+          <li><span class="icon">❌</span> Los productos de belleza no funcionan si el agua los neutraliza</li>
+          <li><span class="icon">❌</span> Gastas en tratamientos que no atacan la causa raíz</li>
+        </ul>
+      </div>
+      <div class="solution-col">
+        <div class="col-header">
+          <span class="col-tag">Con Nua</span>
+          <h3>✅ La solución</h3>
+        </div>
+        <ul class="check-list">
+          <li><span class="icon">✅</span> Elimina +95% de cloro, metales y contaminantes</li>
+          <li><span class="icon">✅</span> Agua suavizada que hidrata en lugar de dañar</li>
+          <li><span class="icon">✅</span> Cabello más suave, brilloso y con menos caída</li>
+          <li><span class="icon">✅</span> Piel menos irritada, más uniforme y saludable</li>
+          <li><span class="icon">✅</span> Tus productos de belleza finalmente hacen su trabajo</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BENEFICIOS ===== -->
+<section class="section benefits-section">
+  <div class="container">
+    <div class="benefits-headline fade-up">
+      <div class="section-label">Resultados reales</div>
+      <h2 class="section-headline">Lo que sientes<br><em>desde la primera ducha</em></h2>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card fade-up">
+        <span class="benefit-icon">🌿</span>
+        <h3>Piel que respira</h3>
+        <p>Sin cloro, tu piel recupera su barrera natural. Menos resequedad, menos comezón, menos irritación. Notarás la diferencia desde el día 1.</p>
+      </div>
+      <div class="benefit-card fade-up">
+        <span class="benefit-icon">✨</span>
+        <h3>Cabello radiante</h3>
+        <p>Sin metales ni minerales dañinos, tu cabello recupera su brillo natural. Menos caída, menos opacidad, más vida en cada lavada.</p>
+      </div>
+      <div class="benefit-card fade-up">
+        <span class="benefit-icon">💤</span>
+        <h3>Ducha que relaja</h3>
+        <p>Agua suavizada = ducha que se siente como spa. Sal más descansada, sin la piel tirante del agua dura.</p>
+      </div>
+      <div class="benefit-card fade-up">
+        <span class="benefit-icon">🧴</span>
+        <h3>Productos que funcionan</h3>
+        <p>Tus cremas, shampoos y tratamientos finalmente rinden al 100% porque el agua ya no los contrarresta.</p>
+      </div>
+      <div class="benefit-card fade-up">
+        <span class="benefit-icon">👨‍👩‍👧</span>
+        <h3>Toda la familia</h3>
+        <p>Ideal para pieles sensibles, niños, embarazadas y mascotas. Agua limpia para todos, sin costo de agua embotellada.</p>
+      </div>
+      <div class="benefit-card fade-up">
+        <span class="benefit-icon">⚡</span>
+        <h3>Instala en 5 minutos</h3>
+        <p>Sin plomero, sin herramientas especiales. Rosca universal, compatible con el 99% de las regaderas. Plug & play del hogar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CÓMO FUNCIONA ===== -->
+<section class="section how-section" id="como-funciona">
+  <div class="container">
+    <div class="how-header fade-up">
+      <div class="section-label">Simple y efectivo</div>
+      <h2 class="section-headline" style="color:white;">Así funciona la magia<br><em style="color:var(--accent-light);">en 4 pasos</em></h2>
+      <p>Tecnología de filtrado de 3 etapas en un cabezal que instala en minutos</p>
+    </div>
+    <div class="steps">
+      <div class="step fade-up">
+        <div class="step-num">🔧</div>
+        <h4>Instala</h4>
+        <p>Retira tu regadera actual y coloca el Nua. Sin herramientas. Listo en 5 min.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">💧</div>
+        <h4>Filtra</h4>
+        <p>3 capas de filtrado eliminan cloro, metales, sedimentos y bacterias al instante.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">🚿</div>
+        <h4>Báñate</h4>
+        <p>Agua limpia, suavizada y purificada fluye directo a tu piel y cabello.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">🌟</div>
+        <h4>Transforma</h4>
+        <p>Desde la primera semana notas cambios reales. Piel e hidratada, cabello fuerte.</p>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:48px;">
+      <a href="https://wa.me/525518311660?text=Hola!%20Quiero%20mi%20Nua%20Showers%20🚿" class="btn-primary" style="display:inline-flex; max-width:360px;">
+        <span>💬</span> Quiero el mío ahora
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIOS ===== -->
+<section class="section testimonials-section">
+  <div class="container">
+    <div class="testimonials-header fade-up">
+      <div class="stars-row">⭐⭐⭐⭐⭐</div>
+      <div class="section-label">Lo que dicen nuestros clientes</div>
+      <h2 class="section-headline">+3,200 personas ya lo<br><em>experimentaron</em></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-up">
+        <div class="tc-stars">★★★★★</div>
+        <p class="tc-text">"Llevaba años con la piel reseca y pensé que era genética. En 3 semanas con Nua mi piel está como nunca. No puedo creerlo."</p>
+        <div class="tc-author">
+          <div class="tc-avatar">K</div>
+          <div>
+            <div class="tc-name">Karen Mendoza</div>
+            <div class="tc-location">CDMX · cliente verificada</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up">
+        <div class="tc-stars">★★★★★</div>
+        <p class="tc-text">"Mi hija tiene piel atópica y los dermatos no nos daban solución. Con Nua bajó muchísimo la irritación. Vale cada peso."</p>
+        <div class="tc-author">
+          <div class="tc-avatar">C</div>
+          <div>
+            <div class="tc-name">Claudia Ríos</div>
+            <div class="tc-location">Guadalajara · madre de familia</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up">
+        <div class="tc-stars">★★★★★</div>
+        <p class="tc-text">"Escéptico al 100% al comprarlo. Pero mi cabello dejó de caerse tanto y se ve brilloso. Mi esposa también lo notó. 10/10."</p>
+        <div class="tc-author">
+          <div class="tc-avatar">R</div>
+          <div>
+            <div class="tc-name">Roberto Vásquez</div>
+            <div class="tc-location">Monterrey · cliente verificado</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="featured-review fade-up">
+      <div class="fr-quote-icon">"</div>
+      <div>
+        <p class="fr-text">Gasté miles de pesos en tratamientos para el cabello sin resultados. Una amiga me recomendó Nua y lo compré sin muchas expectativas. A los 15 días mi estilista me preguntó qué había cambiado porque mi cabello se veía distinto. No cambié nada más que la regadera. Es increíble cómo algo tan simple puede hacer tanto.</p>
+        <div class="fr-name">— Sofía Herrera, 34 años · Puebla</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GARANTÍA ===== -->
+<section class="section guarantee-section">
+  <div class="container">
+    <div class="guarantee-grid">
+      <div class="guarantee-visual fade-up">
+        <div class="guarantee-badge-big">
+          <div class="big-num">30</div>
+          <div class="big-label">Días de garantía</div>
+        </div>
+        <div class="badge badge-green">✓ Sin preguntas, sin complicaciones</div>
+      </div>
+      <div class="fade-up">
+        <div class="section-label">Cero riesgo para ti</div>
+        <h2 class="section-headline" style="font-size:2.2rem;">Tu compra está 100%<br><em>protegida</em></h2>
+        <p style="color:var(--text-muted); font-size:15px; margin-bottom:28px; line-height:1.7;">
+          Sabemos que funciona. Por eso si en 30 días no ves resultados, te devolvemos tu dinero. Sin preguntas, sin burocracia.
+        </p>
+        <div class="guarantee-features">
+          <div class="gf-item">
+            <div class="gf-icon">💰</div>
+            <div>
+              <h4>Devolución garantizada</h4>
+              <p>Si no estás satisfecho, devuelves el producto y recuperas tu dinero completo. Punto.</p>
+            </div>
+          </div>
+          <div class="gf-item">
+            <div class="gf-icon">🔧</div>
+            <div>
+              <h4>Garantía de producto</h4>
+              <p>Si el cabezal presenta algún defecto de fabricación lo reemplazamos sin costo.</p>
+            </div>
+          </div>
+          <div class="gf-item">
+            <div class="gf-icon">🤝</div>
+            <div>
+              <h4>Soporte directo</h4>
+              <p>Tienes acceso a nuestro WhatsApp para cualquier duda sobre instalación o uso.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OFERTA ===== -->
+<section class="offer-section" id="oferta">
+  <div class="container">
+    <div class="offer-inner">
+      <div class="urgency-counter fade-up">
+        🔥 Oferta activa · Quedan pocas unidades
+      </div>
+      <h2 class="offer-headline fade-up">
+        Elige tu paquete y<br><span>empieza hoy</span>
+      </h2>
+      <p class="offer-sub fade-up">Entre más unidades, mayor ahorro. Ideal para familia o para regalar.</p>
+
+      <div class="packages fade-up">
+        <div class="pkg">
+          <div class="pkg-icon">🚿</div>
+          <div class="pkg-name">1x Cabezal Premium</div>
+          <div class="pkg-qty">✓ Garantía 30 días · ✓ Envío gratis</div>
+          <div class="pkg-price">$69 USD</div>
+          <div class="pkg-per">&nbsp;</div>
+        </div>
+        <div class="pkg featured">
+          <div class="pkg-label">⭐ Más vendido</div>
+          <div class="pkg-icon">🚿🚿</div>
+          <div class="pkg-name">Pack 2x Cabezales</div>
+          <div class="pkg-qty">✓ Baño + Habitación · ✓ Filtros 6 meses</div>
+          <div class="pkg-price">$119 USD</div>
+          <div class="pkg-per">&nbsp;</div>
+          <div class="pkg-save">Ahorras 13%</div>
+        </div>
+        <div class="pkg">
+          <div class="pkg-icon">🚿🚿🚿</div>
+          <div class="pkg-name">Pack 3x + Filtros Extra ✨</div>
+          <div class="pkg-qty">✓ Casa completa · ✓ Kit filtros 1 año</div>
+          <div class="pkg-price">$169 USD</div>
+          <div class="pkg-per">Garantía extendida</div>
+          <div class="pkg-save">Ahorras 18%</div>
+        </div>
+      </div>
+
+      <a href="https://wa.me/525518311660?text=Hola!%20Quiero%20pedir%20mi%20Nua%20Showers%20🚿%20¿Me%20puedes%20dar%20más%20información?"
+         class="btn-whatsapp fade-up" id="mainCta">
+        <span style="font-size:24px;">💬</span>
+        <span>Ordenar ahora por WhatsApp</span>
+      </a>
+      <p class="wa-note fade-up">Respuesta en menos de 5 minutos · Envío express disponible</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section faq-section">
+  <div class="container">
+    <div class="faq-header fade-up">
+      <div class="section-label">Resolvemos tus dudas</div>
+      <h2 class="section-headline">Preguntas frecuentes</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item fade-up">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Es compatible con mi regadera actual?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">Sí. El Nua Showers tiene rosca universal y es compatible con el 99% de las duchas del mercado. Si tienes alguna duda, mándanos foto de tu instalación por WhatsApp y te confirmamos.</div>
+      </div>
+      <div class="faq-item fade-up">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Cuándo veré los primeros resultados?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">La mayoría de nuestros clientes nota cambios en la textura de su piel y cabello entre los días 7 y 15. Para resultados más profundos, entre 4 y 8 semanas de uso consistente.</div>
+      </div>
+      <div class="faq-item fade-up">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Cada cuánto cambio el filtro?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">El filtro tiene una duración de aproximadamente 6 meses con uso normal de una persona. En familias de 3-4 personas, recomendamos reemplazarlo cada 3-4 meses. Los filtros de reemplazo los manejamos también.</div>
+      </div>
+      <div class="faq-item fade-up">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Cómo funciona la garantía de 30 días?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">Simple: si en 30 días no ves resultados o no estás satisfecho, nos escribes por WhatsApp, nos devuelves el producto y te reembolsamos el 100% de tu pago. Sin preguntas incómodas, sin letras pequeñas.</div>
+      </div>
+      <div class="faq-item fade-up">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Cómo pago y cuánto tarda el envío?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">Aceptamos transferencia, depósito, tarjeta y pago contra entrega (algunas zonas). El envío express llega en 1-3 días hábiles. Te damos número de rastreo en cuanto sale tu pedido.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="final-cta">
+  <div class="container">
+    <h2 class="fade-up">Tu piel merece<br><span>agua limpia.</span></h2>
+    <p class="fade-up">Más de 3,200 personas ya transformaron su ducha. ¿Cuándo empiezas tú?</p>
+    <a href="https://wa.me/525518311660?text=Hola!%20Quiero%20pedir%20mi%20Nua%20Showers%20🚿"
+       class="btn-whatsapp fade-up">
+      <span style="font-size:24px;">💬</span>
+      <span>Sí, quiero mi Nua Showers</span>
+    </a>
+    <p style="color:rgba(255,255,255,0.35); font-size:13px; margin-top:12px;">
+      🔒 Garantía 30 días · Envío express · Pago seguro
+    </p>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>© 2025 Nua Showers · Todos los derechos reservados · <a href="#">Privacidad</a> · <a href="#">Términos</a></p>
+  <p style="margin-top:6px; font-size:11px; opacity:0.5;">
+    <!-- 💡 Shopify migration: Replace all wa.me links with your Shopify Add to Cart URL -->
+    Diseñado para escalar a tienda online Shopify sin rediseño.
+  </p>
+</footer>
+
+<!-- ===== FLOATING WHATSAPP ===== -->
+<a href="https://wa.me/525518311660?text=Hola!%20Me%20interesa%20el%20Nua%20Showers%20🚿" class="wa-float" title="Chatea con nosotros">
+  <div class="wa-float-pulse"></div>
+  💬
+</a>
+
+<script>
+// ===== FAQ TOGGLE =====
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// ===== SCROLL ANIMATIONS =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ===== WHATSAPP NUMBER — change here to update all links =====
+const WA_NUMBER = '525518311660'; // ← Change this to your number
+const WA_MESSAGES = {
+  hero: 'Hola! Quiero mi Nua Showers 🚿 ¿Me puedes dar información y precio?',
+  main: 'Hola! Quiero hacer un pedido de Nua Showers 🚿 ¿Cuáles paquetes tienen disponibles?',
+  float: 'Hola! Me interesa el cabezal Nua Showers 🚿'
+};
+
+function buildWaLink(msg) {
+  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+}
+
+document.getElementById('heroCta').href = buildWaLink(WA_MESSAGES.hero);
+document.getElementById('mainCta').href = buildWaLink(WA_MESSAGES.main);
+
+// ===== PACKAGE CLICK =====
+document.querySelectorAll('.pkg').forEach(pkg => {
+  pkg.addEventListener('click', () => {
+    const name = pkg.querySelector('.pkg-name').textContent;
+    const qty = pkg.querySelector('.pkg-qty').textContent;
+    const price = pkg.querySelector('.pkg-price').textContent;
+    const msg = `Hola! Quiero pedir el paquete ${name} (${qty}) por ${price} de Nua Showers 🚿`;
+    window.open(buildWaLink(msg), '_blank');
+  });
+});
+
+// ===== URGENCY COUNTER =====
+// Simulates a countdown for urgency (replace with real stock logic)
+let units = 8;
+const urgencyEl = document.querySelector('.urgency-counter');
+setInterval(() => {
+  if (Math.random() < 0.1 && units > 3) {
+    units--;
+    urgencyEl.textContent = `🔥 Oferta activa · Solo quedan ${units} unidades`;
+  }
+}, 45000);
+</script>
+</body>
+</html>
